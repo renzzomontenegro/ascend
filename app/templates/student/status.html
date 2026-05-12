@@ -1,0 +1,49 @@
+<!-- student applications list (status overview) -->
+{% extends "base.html" %}
+
+{% block title %}Application Status{% endblock %}
+
+{% block body_class %}page-student{% endblock %}
+
+{% block content %}
+<div class="page-container">
+  <h1>My Applications</h1>
+  <p class="page-subtitle">Track the status of your enrollment applications</p>
+
+  {% if applications %}
+    <div class="applications-list">
+      {% for app in applications %}
+        <div class="app-card app-status-{{ app[3]|lower }}">
+          <div class="app-header">
+            <div class="app-meta">
+              <h3>{{ app[0] }}</h3>
+              <p class="app-course">{{ app[1] }} — {{ app[2] }}</p>
+            </div>
+            <div class="app-status-badge status-{{ app[3]|lower }}">
+              {{ app[3] }}
+            </div>
+          </div>
+
+          <div class="app-body">
+            <div class="app-detail">
+              <span class="label">Submitted</span>
+              <span class="value">{{ app[4].strftime('%Y-%m-%d %H:%M') if app[4] else 'N/A' }}</span>
+            </div>
+            {% if app[5] %}
+              <div class="app-detail">
+                <span class="label">Admin Notes</span>
+                <span class="value">{{ app[5] }}</span>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <p>You haven't submitted any applications yet.</p>
+      <a href="{{ url_for('apply') }}" class="btn-navy">Start Application</a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

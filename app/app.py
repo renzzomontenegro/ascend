@@ -2,31 +2,46 @@ from flask import (Flask, render_template, request,
                    redirect, url_for, session, flash)
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
-from azure.storage.blob import BlobServiceClient
-from applicationinsights.flask.ext import AppInsights
 from config import Config
 from db import get_connection, init_db
 import os
 
+if Config.USE_AZURE:
+    from azure.storage.blob import BlobServiceClient
+    from applicationinsights.flask.ext import AppInsights
+
 app = Flask(__name__)
 app.config.from_object(Config)
 
-# Application Insights
-if Config.APPINSIGHTS_KEY:
+# Application Insights (production only)
+if Config.USE_AZURE and Config.APPINSIGHTS_KEY:
     appinsights = AppInsights(app)
 
 # HELPERS
 
 def upload_to_blob(file):
-    """Upload a file to Azure Blob Storage, return public URL."""
-    client = BlobServiceClient.from_connection_string(
-        Config.AZURE_STORAGE_CONNECTION_STRING
-    )
-    container = client.get_container_client(Config.AZURE_BLOB_CONTAINER)
+    """Upload a file to Azure Blob Storage (prod) or store locally (dev)."""
+    if not file or not file.filename:
+        return None
+
     filename = secure_filename(file.filename)
-    blob = container.get_blob_client(filename)
-    blob.upload_blob(file.read(), overwrite=True)
-    return blob.url
+
+    if Config.USE_AZURE:
+        # Production: upload to Azure Blob Storage
+        client = BlobServiceClient.from_connection_string(
+            Config.AZURE_STORAGE_CONNECTION_STRING
+        )
+        container = client.get_container_client(Config.AZURE_BLOB_CONTAINER)
+        blob = container.get_blob_client(filename)
+        blob.upload_blob(file.read(), overwrite=True)
+        return blob.url
+    else:
+        # Development: save to local /uploads directory
+        upload_dir = os.path.join(os.path.dirname(__file__), "uploads")
+        os.makedirs(upload_dir, exist_ok=True)
+        filepath = os.path.join(upload_dir, filename)
+        file.save(filepath)
+        return f"/uploads/{filename}"  # Return a relative URL
 
 def login_required(role=None):
     """Decorator — protect routes by role."""
@@ -70,7 +85,7 @@ def register():
         finally:
             cursor.close()
             conn.close()
-    return render_template("register.html")
+    return render_template("auth/register.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -94,7 +109,7 @@ def login():
                 return redirect(url_for("admin_dashboard"))
             return redirect(url_for("apply"))
         flash("Invalid credentials.", "danger")
-    return render_template("login.html")
+    return render_template("auth/login.html")
 
 @app.route("/logout")
 def logout():
@@ -133,7 +148,7 @@ def apply():
         conn.close()
         flash("Application submitted successfully!", "success")
         return redirect(url_for("status"))
-    return render_template("apply.html")
+    return render_template("student/apply.html")
 
 @app.route("/status")
 @login_required(role="student")
@@ -150,7 +165,7 @@ def status():
     applications = cursor.fetchall()
     cursor.close()
     conn.close()
-    return render_template("status.html", applications=applications)
+    return render_template("student/status.html", applications=applications)
 
 # ADMIN ROUTES
 
@@ -168,7 +183,7 @@ def admin_dashboard():
     applications = cursor.fetchall()
     cursor.close()
     conn.close()
-    return render_template("admin_dashboard.html", applications=applications)
+    return render_template("admin/dashboard.html", applications=applications)
 
 @app.route("/admin/review/<int:app_id>", methods=["GET", "POST"])
 @login_required(role="admin")
@@ -178,11 +193,22 @@ def admin_review(app_id):
     if request.method == "POST":
         status     = request.form["status"]
         admin_notes = request.form["admin_notes"]
-        cursor.execute("""
-            UPDATE enrollments
-            SET status = ?, admin_notes = ?, reviewed_at = GETDATE()
-            WHERE id = ?
-        """, (status, admin_notes, app_id))
+        
+        # Use appropriate SQL syntax for SQLite vs SQL Server
+        if Config.USE_AZURE:
+            sql = """
+                UPDATE enrollments
+                SET status = ?, admin_notes = ?, reviewed_at = GETDATE()
+                WHERE id = ?
+            """
+        else:
+            sql = """
+                UPDATE enrollments
+                SET status = ?, admin_notes = ?, reviewed_at = CURRENT_TIMESTAMP
+                WHERE id = ?
+            """
+        
+        cursor.execute(sql, (status, admin_notes, app_id))
         conn.commit()
         flash(f"Application {status}.", "success")
         cursor.close()
@@ -193,10 +219,21 @@ def admin_review(app_id):
     application = cursor.fetchone()
     cursor.close()
     conn.close()
-    return render_template("admin_review.html", application=application)
+    return render_template("admin/review.html", application=application)
+
+# SERVE UPLOADS (dev mode)
+if not Config.USE_AZURE:
+    import os.path
+    @app.route('/uploads/<filename>')
+    def uploaded_file(filename):
+        from flask import send_from_directory
+        upload_dir = os.path.join(os.path.dirname(__file__), "uploads")
+        return send_from_directory(upload_dir, filename)
 
 # ENTRY POINT
 
 if __name__ == "__main__":
     init_db()
-    app.run(debug=False)
+    debug_mode = not Config.USE_AZURE  # Debug=True for dev, False for prod
+    print(f"Starting Flask app (USE_AZURE={Config.USE_AZURE}, DEBUG={debug_mode})")
+    app.run(debug=debug_mode)

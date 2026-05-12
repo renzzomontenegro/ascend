@@ -1,4 +1,38 @@
-app/.env
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
 *.pyc
+venv/
+env/
+
+# Environment
+app/.env
 .env
+
+# Database (local dev)
+app/app.db
+app/uploads/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cache
+cache/
+*.cache
+
+# Build
+build/
+dist/
+*.egg-info/
+venv/
+env/

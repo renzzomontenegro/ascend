@@ -1,0 +1,98 @@
+<!-- admin review page (for approving or rejecting applications) -->
+{% extends "base.html" %}
+
+{% block title %}Review Application{% endblock %}
+
+{% block body_class %}page-admin{% endblock %}
+
+{% block content %}
+<div class="page-container">
+  <h1>Review Application</h1>
+  <p class="page-subtitle">Review and approve or reject student enrollment application</p>
+
+  {% if application %}
+    <div class="review-panel">
+      <div class="review-info">
+        <div class="info-section">
+          <h3>Student Information</h3>
+          <div class="info-row">
+            <span class="label">Name:</span>
+            <span class="value">{{ application[1] }}</span>
+          </div>
+          <div class="info-row">
+            <span class="label">Student ID:</span>
+            <span class="value">{{ application[2] }}</span>
+          </div>
+          <div class="info-row">
+            <span class="label">Email:</span>
+            <span class="value"><a href="mailto:{{ application[5] }}">{{ application[5] }}</a></span>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <h3>Application Details</h3>
+          <div class="info-row">
+            <span class="label">Course:</span>
+            <span class="value">{{ application[3] }}</span>
+          </div>
+          <div class="info-row">
+            <span class="label">Year Level:</span>
+            <span class="value">{{ application[4] }}</span>
+          </div>
+          <div class="info-row">
+            <span class="label">Submitted:</span>
+            <span class="value">{{ application[8].strftime('%Y-%m-%d %H:%M') if application[8] else 'N/A' }}</span>
+          </div>
+          <div class="info-row">
+            <span class="label">Status:</span>
+            <span class="value">
+              <span class="status-badge status-{{ application[7]|lower }}">{{ application[7] }}</span>
+            </span>
+          </div>
+        </div>
+
+        {% if application[6] %}
+          <div class="info-section">
+            <h3>Uploaded Document</h3>
+            <a href="{{ application[6] }}" target="_blank" class="btn-outline">View Document</a>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="review-form">
+        <form method="POST" class="form-review">
+          <div class="form-group">
+            <label for="status">Decision *</label>
+            <select id="status" name="status" required>
+              <option value="">-- Select Decision --</option>
+              <option value="Pending">Pending</option>
+              <option value="Approved">Approved</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="admin_notes">Admin Notes</label>
+            <textarea 
+              id="admin_notes" 
+              name="admin_notes" 
+              placeholder="Enter any notes or feedback for the student..."
+              rows="6"
+            ></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-navy">Save Decision</button>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn-outline">Back to Dashboard</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <p>Application not found.</p>
+      <a href="{{ url_for('admin_dashboard') }}" class="btn-navy">Back to Dashboard</a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -167,6 +167,63 @@ Then open your browser and go to:
 http://localhost:5000
 
 ---
+## Run locally without Azure (Dev mode) — Quick local preview
+
+**Quick:** preview and develop locally with SQLite and local file storage (no Azure required).
+
+1. From the `app/` folder create and activate a virtual environment (recommended):
+
+```bash
+cd app
+python -m venv venv
+source venv/bin/activate   # macOS / Linux
+# venv\Scripts\activate   # Windows
+```
+
+2. Install dependencies (or use the minimal set for local dev):
+
+```bash
+pip install -r requirements.txt
+# If you prefer a minimal install for quick preview:
+pip install Flask==3.0.3 python-dotenv==1.0.1 werkzeug==3.0.3
+```
+
+3. Configure local environment variables. Copy the example and ensure `USE_AZURE` is false (default):
+
+```bash
+cp .env.example .env
+# Edit .env and ensure:
+# USE_AZURE=false
+# DB_PATH=app.db   # optional
+```
+
+4. Initialize the local database (creates `app/app.db` and tables):
+
+```bash
+python -c "from db import init_db; init_db()"
+```
+
+5. (Optional) Create test accounts manually. You can create an admin and a student account using Python to generate a password hash and insert into the SQLite DB:
+
+```bash
+python - <<'PY'
+from werkzeug.security import generate_password_hash
+from db import get_connection
+conn = get_connection()
+cur = conn.cursor()
+cur.execute("INSERT INTO accounts (username, password_hash, role) VALUES (?, ?, ?)", ('admin', generate_password_hash('admin123'), 'admin'))
+cur.execute("INSERT INTO accounts (username, password_hash, role) VALUES (?, ?, ?)", ('student', generate_password_hash('student123'), 'student'))
+conn.commit(); cur.close(); conn.close()
+print('Created admin/student accounts: admin/admin123 and student/student123')
+PY
+```
+
+Notes:
+- The repository includes a helper `LOCAL_DEV.md` with the quick-start steps.
+- In dev mode uploads are saved to `app/uploads/` and served at `/uploads/<filename>`.
+
+
+---
 
 ### 7. Available Routes
 

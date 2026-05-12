@@ -1,0 +1,92 @@
+<!-- student application page (enrollment form) -->
+{% extends "base.html" %}
+
+{% block title %}Submit Application{% endblock %}
+
+{% block body_class %}page-student{% endblock %}
+
+{% block content %}
+<div class="page-container">
+  <h1>Enrollment Application</h1>
+  <p class="page-subtitle">Submit your enrollment application and supporting documents</p>
+
+  <form method="POST" enctype="multipart/form-data" class="form-apply">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="student_name">Full Name *</label>
+        <input 
+          type="text" 
+          id="student_name" 
+          name="student_name" 
+          placeholder="e.g., Jessica Lanuzo"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="student_id">Student ID *</label>
+        <input 
+          type="text" 
+          id="student_id" 
+          name="student_id" 
+          placeholder="e.g., 2024-001"
+          required
+        >
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="email">Email Address *</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          placeholder="your.email@example.com"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="course">Intended Course *</label>
+        <select id="course" name="course" required>
+          <option value="">-- Select a Course --</option>
+          <option value="BS Computer Science">BS Computer Science</option>
+          <option value="BS Information Technology">BS Information Technology</option>
+          <option value="BS Business Administration">BS Information Systems</option>
+          <option value="BS Engineering">Bachelor of Library and Information Science</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="year_level">Year Level *</label>
+        <select id="year_level" name="year_level" required>
+          <option value="">-- Select Year Level --</option>
+          <option value="1st Year">1st Year</option>
+          <option value="2nd Year">2nd Year</option>
+          <option value="3rd Year">3rd Year</option>
+          <option value="4th Year">4th Year</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="document">Upload Document (PDF, DOC, DOCX)</label>
+        <input 
+          type="file" 
+          id="document" 
+          name="document" 
+          accept=".pdf,.doc,.docx"
+        >
+        <small>Optional: e.g., transcript, recommendation letter</small>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-navy">Submit Application</button>
+      <a href="{{ url_for('index') }}" class="btn-outline">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

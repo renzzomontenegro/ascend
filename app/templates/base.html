@@ -1,0 +1,131 @@
+<!-- base layout (shared header/footer) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}ASCEND{% endblock %} — Azure Student Enrollment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+
+  {# ── TOP INFO BAR (matches reference: gold text on dark navy) ── #}
+  <div class="info-bar">
+    <span>AY 2025–2026 · 2nd Semester</span>
+    <span class="sep">·</span>
+    <span>Mon–Fri 8am–5pm</span>
+    <span class="sep">·</span>
+    <span>CSEC 3 – Cloud Computing</span>
+    <span class="sep">·</span>
+    <span class="gold">Powered by Microsoft Azure</span>
+  </div>
+
+  {# ── MAIN NAV ── #}
+  <header class="site-header">
+    <div class="hdr-inner">
+      <a href="{{ url_for('index') }}" class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2L4 7.5V14c0 5.25 4.27 10.15 10 11.33C19.73 24.15 24 19.25 24 14V7.5L14 2z" fill="white" fill-opacity="0.15" stroke="white" stroke-width="1.5"/>
+            <path d="M10 14l3 3 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">ASCEND</span>
+          <span class="brand-sub">Student Enrollment System</span>
+        </div>
+      </a>
+
+      <nav class="main-nav">
+        <a href="{{ url_for('index') }}" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">Home</a>
+        {% if session.get('role') == 'student' %}
+          <a href="{{ url_for('apply') }}" class="nav-link {% if request.endpoint == 'apply' %}active{% endif %}">Apply</a>
+          <a href="{{ url_for('status') }}" class="nav-link {% if request.endpoint == 'status' %}active{% endif %}">My Status</a>
+        {% endif %}
+        {% if session.get('role') == 'admin' %}
+          <a href="{{ url_for('admin_dashboard') }}" class="nav-link {% if request.endpoint == 'admin_dashboard' %}active{% endif %}">Dashboard</a>
+        {% endif %}
+      </nav>
+
+      <div class="hdr-actions">
+        {% if session.get('user_id') %}
+          <span class="hdr-user">
+            <span class="hdr-avatar">{{ session.get('username', '?')[0]|upper }}</span>
+            <span class="hdr-username">{{ session.get('username') }}</span>
+            <span class="hdr-role-badge hdr-role-{{ session.get('role') }}">{{ session.get('role')|title }}</span>
+          </span>
+          <a href="{{ url_for('logout') }}" class="btn-outline-sm">Logout</a>
+        {% else %}
+          <a href="{{ url_for('login') }}" class="nav-link">Login</a>
+          <a href="{{ url_for('register') }}" class="btn-navy">Register</a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  {# ── FLASH MESSAGES ── #}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-wrap">
+        {% for category, message in messages %}
+          <div class="flash flash-{{ category }}">
+            <span class="flash-icon">
+              {% if category == 'success' %}✓{% elif category == 'danger' %}✕{% else %}!{% endif %}
+            </span>
+            {{ message }}
+            <button class="flash-close" onclick="this.parentElement.remove()">×</button>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  {# ── PAGE CONTENT ── #}
+  <main class="page-main">
+    {% block content %}{% endblock %}
+  </main>
+
+  {# ── FOOTER ── #}
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="brand-icon brand-icon--sm">
+          <svg viewBox="0 0 28 28" fill="none"><path d="M14 2L4 7.5V14c0 5.25 4.27 10.15 10 11.33C19.73 24.15 24 19.25 24 14V7.5L14 2z" fill="white" fill-opacity="0.2" stroke="white" stroke-width="1.5"/><path d="M10 14l3 3 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="footer-brand-name">ASCEND</div>
+          <div class="footer-brand-sub">Azure-based Student Cloud Enrollment Dashboard</div>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-title">Quick Links</div>
+          <a href="{{ url_for('index') }}">Home</a>
+          <a href="{{ url_for('login') }}">Login</a>
+          <a href="{{ url_for('register') }}">Register</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Student</div>
+          <a href="{{ url_for('apply') }}">Submit Application</a>
+          <a href="{{ url_for('status') }}">Track Status</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Azure Services</div>
+          <span>App Service</span>
+          <span>SQL Database</span>
+          <span>Blob Storage</span>
+          <span>App Insights</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 ASCEND · CSEC 3 Cloud Computing · AY 2025–2026</span>
+        <span>John Renzzo Montenegro &amp; Jessica Mae Lanuzo</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!-- admin dashboard -->
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block body_class %}page-admin{% endblock %}
+
+{% block content %}
+<div class="page-container">
+  <h1>Admin Dashboard</h1>
+  <p class="page-subtitle">Review and manage student enrollment applications</p>
+
+  {% if applications %}
+    <div class="applications-table">
+      <table class="table-submissions">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Student Name</th>
+            <th>Student ID</th>
+            <th>Course</th>
+            <th>Year Level</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Submitted</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for app in applications %}
+            <tr class="row-status-{{ app[6]|lower }}">
+              <td>{{ app[0] }}</td>
+              <td>{{ app[1] }}</td>
+              <td>{{ app[2] }}</td>
+              <td>{{ app[3] }}</td>
+              <td>{{ app[4] }}</td>
+              <td><a href="mailto:{{ app[5] }}">{{ app[5] }}</a></td>
+              <td>
+                <span class="status-badge status-{{ app[6]|lower }}">
+                  {{ app[6] }}
+                </span>
+              </td>
+              <td>{{ app[7].strftime('%Y-%m-%d') if app[7] else 'N/A' }}</td>
+              <td>
+                <a href="{{ url_for('admin_review', app_id=app[0]) }}" class="btn-link">Review</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <p>No applications submitted yet.</p>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
