@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - `Renzzo Montenegro` - Created full project folder structure: `/diagram`, `/deployment/screenshots`, `/report`, `/app`
 - `Renzzo Montenegro` - Added root `README.md` with project overview and Azure services table
 - `Renzzo Montenegro` - Added `CHANGELOG.md` following the given format
+- `Jessica Lanuzo` - Added system diagram, `architecture.png` to diagram folder
 
 ### Changed
 - `Renzzo Montenegro` - Updated root `README.md`
