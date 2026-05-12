@@ -40,7 +40,7 @@
                   {{ app[6] }}
                 </span>
               </td>
-              <td>{{ app[7].strftime('%Y-%m-%d') if app[7] else 'N/A' }}</td>
+              <td>{{ app[7].strftime('%Y-%m-%d') if app[7] and not (app[7] is string) else (app[7] or 'N/A') }}</td>
               <td>
                 <a href="{{ url_for('admin_review', app_id=app[0]) }}" class="btn-link">Review</a>
               </td>

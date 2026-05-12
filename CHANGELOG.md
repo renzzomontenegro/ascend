@@ -60,3 +60,4 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - `Jessica Lanuzo` - Added a local dev path that was missing from the earlier repo version, so the app can now be previewed without Azure credentials or cloud assets.
 - `Jessica Lanuzo` - Documented the local preview flow to match the backend-first setup we started with before the frontend pages were added.
+- `Jessica Lanuzo` - Updated date rendering in `app/templates/admin/dashboard.html`, `app/templates/admin/review.html`, and `app/templates/student/status.html` to safely handle both datetime and string values, preventing template crashes (`'str' object has no attribute 'strftime'`) in local dev.

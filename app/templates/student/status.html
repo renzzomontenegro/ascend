@@ -27,7 +27,7 @@
           <div class="app-body">
             <div class="app-detail">
               <span class="label">Submitted</span>
-              <span class="value">{{ app[4].strftime('%Y-%m-%d %H:%M') if app[4] else 'N/A' }}</span>
+              <span class="value">{{ app[4].strftime('%Y-%m-%d %H:%M') if app[4] and not (app[4] is string) else (app[4] or 'N/A') }}</span>
             </div>
             {% if app[5] %}
               <div class="app-detail">

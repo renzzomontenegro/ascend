@@ -41,7 +41,7 @@
           </div>
           <div class="info-row">
             <span class="label">Submitted:</span>
-            <span class="value">{{ application[8].strftime('%Y-%m-%d %H:%M') if application[8] else 'N/A' }}</span>
+            <span class="value">{{ application[8].strftime('%Y-%m-%d %H:%M') if application[8] and not (application[8] is string) else (application[8] or 'N/A') }}</span>
           </div>
           <div class="info-row">
             <span class="label">Status:</span>
