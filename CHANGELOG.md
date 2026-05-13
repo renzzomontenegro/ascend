@@ -30,17 +30,13 @@ All notable changes to this project will be documented in this file.
   - Added `.gitignore` at project root
 
 ### Changed
-- `Renzzo Montenegro` - Replaced `pyodbc` with `pymssql` in `requirements.txt` and 
-  `db.py` due to Microsoft C++ Build Tools compiler conflict on Windows 
-- `Renzzo Montenegro` - Updated `config.py` connection string method to use
-  `pymssql` dictionary format instead of `pyodbc` string format
+- `Renzzo Montenegro` - Replaced `pyodbc` with `pymssql` in `requirements.txt` and `db.py` due to Microsoft C++ Build Tools compiler conflict on Windows 
+- `Renzzo Montenegro` - Updated `config.py` connection string method to use `pymssql` dictionary format instead of `pyodbc` string format
 - `Renzzo Montenegro` - Added setup instructions to README.md
 
 ### Fixed
-- `Renzzo Montenegro` - Resolved `pyodbc` build error caused by missing/conflicting
-  Microsoft Visual C++ 14.0 Build Tools
-- `Renzzo Montenegro` - Resolved VS Code interpreter underline warnings by pointing
-  IDE to correct venv Python interpreter
+- `Renzzo Montenegro` - Resolved `pyodbc` build error caused by missing/conflicting Microsoft Visual C++ 14.0 Build Tools
+- `Renzzo Montenegro` - Resolved VS Code interpreter underline warnings by pointing IDE to correct venv Python interpreter
 
 ## [2026-05-13] - Initial Frontend & Local Dev
 
@@ -61,3 +57,14 @@ All notable changes to this project will be documented in this file.
 - `Jessica Lanuzo` - Added a local dev path that was missing from the earlier repo version, so the app can now be previewed without Azure credentials or cloud assets.
 - `Jessica Lanuzo` - Documented the local preview flow to match the backend-first setup we started with before the frontend pages were added.
 - `Jessica Lanuzo` - Updated date rendering in `app/templates/admin/dashboard.html`, `app/templates/admin/review.html`, and `app/templates/student/status.html` to safely handle both datetime and string values, preventing template crashes (`'str' object has no attribute 'strftime'`) in local dev.
+
+## [2026-05-13] - Azure Deployment and Credentials
+
+### Added
+- `Renzzo Montenegro` - Created Azure Resource Group `ascend-rg` (Region: East Asia)                  (screenshot in deployment/screenshots/01)
+- `Renzzo Montenegro` - Created Azure App Service Plan `ascend-plan` (Linux, F1 Free tier)            (screenshot in deployment/screenshots/02)
+- `Renzzo Montenegro` - Created Azure App Service `ascend-app` (Python 3.10, Linux)                   (screenshot in deployment/screenshots/03)
+- `Renzzo Montenegro` - Enabled Application Insights during App Service creation (`ascend-insights`)  (screenshot in deployment/screenshots/04)
+- `Renzzo Montenegro` - Configured HTTPS-only enforcement and TLS 1.2 minimum                         (screenshot in deployment/screenshots/05)
+- `Renzzo Montenegro` - Added all application environment variables to App Service Configuration      (screenshot in deployment/screenshots/06)
+- `Renzzo Montenegro` - Set gunicorn startup command for Flask production server                      (screenshot in deployment/screenshots/07)
