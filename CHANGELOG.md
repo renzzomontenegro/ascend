@@ -108,6 +108,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - `Renzzo Montenegro` - Corrected GitHub Actions CI/CD workflow `main_ascend-app.yml`
+- `Renzzo Montenegro` - Fixed GitHub Actions CI/CD workflow `main_ascend-app.yml`: Changed from artifact archive to explicit zip deployment
 
 ## [2026-05-13] - App Service Autoscale
 
