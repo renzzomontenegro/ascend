@@ -83,6 +83,8 @@ All notable changes to this project will be documented in this file.
 - `Jessica Lanuzo` - Configured `ascend-sql-server` firewall rules. Added client IP and allowed Azure service and resource access
   - (screenshot in deployment/screenshots/23)
 
+- `Renzzo Montenegro` - Configured the SQL and Blob Storage connection settings as App Service environment variables with assistance from `Jessica`
+
 ## [2026-05-13] - CI/CD and Deployment
 
 ### Added
