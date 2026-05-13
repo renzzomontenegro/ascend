@@ -90,8 +90,8 @@ All notable changes to this project will be documented in this file.
   - (screenshot in deployment/screenshots/23)
 - `Jessica Lanuzo` - Configured `ascendstorage` to enable anonymous access for public access blob container creation
   - (screenshot in deployment/screenshots/29)
-
 - `Renzzo Montenegro` - Configured the SQL and Blob Storage connection settings as App Service environment variables with assistance from `Jessica`
+- `Renzzo Montenegro` - Configured the App Insight Instrumentation Key on App Service Environment Variables
 
 ## [2026-05-13] - CI/CD and Deployment
 
