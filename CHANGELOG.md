@@ -61,13 +61,33 @@ All notable changes to this project will be documented in this file.
 ## [2026-05-13] - Azure Deployment and Credentials
 
 ### Added
-- `Renzzo Montenegro` - Created Azure Resource Group `ascend-rg` (Region: East Asia)                  (screenshot in deployment/screenshots/01)
-- `Renzzo Montenegro` - Created Azure App Service Plan `ascend-plan` (Linux, F1 Free tier)            (screenshot in deployment/screenshots/02)
-- `Renzzo Montenegro` - Created Azure App Service `ascend-app` (Python 3.10, Linux)                   (screenshot in deployment/screenshots/03)
-- `Renzzo Montenegro` - Enabled Application Insights during App Service creation (`ascend-insights`)  (screenshot in deployment/screenshots/04)
-- `Renzzo Montenegro` - Configured HTTPS-only enforcement and TLS 1.2 minimum                         (screenshot in deployment/screenshots/05)
-- `Renzzo Montenegro` - Added all application environment variables to App Service Configuration      (screenshot in deployment/screenshots/06)
-- `Renzzo Montenegro` - Set gunicorn startup command for Flask production server                      (screenshot in deployment/screenshots/07)
+- `Renzzo Montenegro` - Created Azure Resource Group `ascend-rg` (Region: East Asia)                  
+  - (screenshot in deployment/screenshots/01)
+- `Renzzo Montenegro` - Created Azure App Service Plan `ascend-plan` (Linux, F1 Free tier)            
+  - (screenshot in deployment/screenshots/02)
+- `Renzzo Montenegro` - Created Azure App Service `ascend-app` (Python 3.10, Linux)                   
+  - (screenshot in deployment/screenshots/03)
+- `Renzzo Montenegro` - Enabled Application Insights during App Service creation (`ascend-insights`)  
+  - (screenshot in deployment/screenshots/04)
+- `Renzzo Montenegro` - Configured HTTPS-only enforcement and TLS 1.2 minimum                         
+  - (screenshot in deployment/screenshots/05)
+- `Renzzo Montenegro` - Added all application environment variables to App Service Configuration      
+  - (screenshot in deployment/screenshots/06)
+- `Renzzo Montenegro` - Set gunicorn startup command for Flask production server                      
+  - (screenshot in deployment/screenshots/07)
+
+## [2026-05-13] - CI/CD and Deployment
+
+### Added
+- `Renzzo Montenegro` - Connected GitHub Actions CI/CD via Azure App Service Deployment Center
+  - (screenshot in deployment/screenshots/08)
+- `Renzzo Montenegro` - Azure auto-generated deployment workflow file linked to `main` branch of `ascend` repository
+  - (screenshot in deployment/screenshots/09)
+- `Renzzo Montenegro` - Verified live URL on Azure Portal
+  - (screenshot in deployment/screenshots/10)
+
+### Changed
+- `Renzzo Montenegro` - Updated GitHub Actions CI/CD workflow `main_ascend-app.yml`
 
 ### Fixed
 - `Renzzo Montenegro` - Corrected GitHub Actions CI/CD workflow `main_ascend-app.yml`
