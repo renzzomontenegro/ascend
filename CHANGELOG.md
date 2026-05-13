@@ -68,3 +68,6 @@ All notable changes to this project will be documented in this file.
 - `Renzzo Montenegro` - Configured HTTPS-only enforcement and TLS 1.2 minimum                         (screenshot in deployment/screenshots/05)
 - `Renzzo Montenegro` - Added all application environment variables to App Service Configuration      (screenshot in deployment/screenshots/06)
 - `Renzzo Montenegro` - Set gunicorn startup command for Flask production server                      (screenshot in deployment/screenshots/07)
+
+### Fixed
+- `Renzzo Montenegro` - Corrected GitHub Actions CI/CD workflow `main_ascend-app.yml`
