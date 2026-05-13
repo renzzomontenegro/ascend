@@ -77,8 +77,11 @@ All notable changes to this project will be documented in this file.
   - (screenshot in deployment/screenshots/07)
 - `Jessica Lanuzo` - Created Azure SQL Server `ascend-sql-server` in East Asia (same region as other resources) in resource group `ascend-rg`
   - (screenshot in deployment/screenshots/6 and 7)
-- `Jessica Lanuzo` - Created Azure SQL Database `enrollmentdb` in server `ascend-sql-server` i
+- `Jessica Lanuzo` - Created Azure SQL Database `enrollmentdb` in server `ascend-sql-server`
   - (screenshot in deployment/screenshots/11 to 22)
+- `Jessica Lanuzo` - Created Blob Storage `ascend-storage` in East Asia in resource group `ascend-rg` with Standard performance and LRS redundancy
+  - (screenshot in deployment/screenshots/24 to 28)
+
 ### Changed
 - `Jessica Lanuzo` - Configured `ascend-sql-server` firewall rules. Added client IP and allowed Azure service and resource access
   - (screenshot in deployment/screenshots/23)
