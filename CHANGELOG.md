@@ -108,3 +108,16 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - `Renzzo Montenegro` - Corrected GitHub Actions CI/CD workflow `main_ascend-app.yml`
+
+## [2026-05-13] - App Service Autoscale
+
+### Added
+- `Renzzo Montenegro` - Configured manual scale on App Service Plan `ascend-plan` (Basic B1, 2 active instances)
+- `Renzzo Montenegro` - Set maximum scale instances to 3
+
+### Notes
+- Manual scaling chosen due to Azure for Students subscription onstraints (S1 at ~$56/month exceeds budget)
+- Autoscale policy fully documented for production reference
+- Cost saving: B1 vs S1 = ~$43/month reduction (77% savings)
+- Full Rules-Based autoscaling requires Standard S1 tier
+
