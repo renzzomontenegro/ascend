@@ -75,7 +75,10 @@ All notable changes to this project will be documented in this file.
   - (screenshot in deployment/screenshots/06)
 - `Renzzo Montenegro` - Set gunicorn startup command for Flask production server                      
   - (screenshot in deployment/screenshots/07)
-
+- `Jessica Lanuzo` - Created Azure SQL Server `ascend-sql-server` in East Asia (same region as other resources) in resource group `ascend-rg`
+  - (screenshot in deployment/screenshots/6 and 7)
+- `Jessica Lanuzo` - Created Azure SQL Database `enrollmentdb` in server `ascend-sql-server` i
+  - (screenshot in deployment/screenshots/11 to 22)
 ## [2026-05-13] - CI/CD and Deployment
 
 ### Added
