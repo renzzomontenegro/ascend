@@ -81,10 +81,15 @@ All notable changes to this project will be documented in this file.
   - (screenshot in deployment/screenshots/11 to 22)
 - `Jessica Lanuzo` - Created Blob Storage `ascend-storage` in East Asia in resource group `ascend-rg` with Standard performance and LRS redundancy
   - (screenshot in deployment/screenshots/24 to 28)
+- `Jessica Lanuzo` - Created Blob Storage Container `documents` with Blob public access level in `ascend-storage`
+  - (screenshot in deployment/screenshots/30 to 31)
+  
 
 ### Changed
 - `Jessica Lanuzo` - Configured `ascend-sql-server` firewall rules. Added client IP and allowed Azure service and resource access
   - (screenshot in deployment/screenshots/23)
+- `Jessica Lanuzo` - Configured `ascendstorage` to enable anonymous access for public access blob container creation
+  - (screenshot in deployment/screenshots/29)
 
 - `Renzzo Montenegro` - Configured the SQL and Blob Storage connection settings as App Service environment variables with assistance from `Jessica`
 
