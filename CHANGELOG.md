@@ -79,6 +79,10 @@ All notable changes to this project will be documented in this file.
   - (screenshot in deployment/screenshots/6 and 7)
 - `Jessica Lanuzo` - Created Azure SQL Database `enrollmentdb` in server `ascend-sql-server` i
   - (screenshot in deployment/screenshots/11 to 22)
+### Changed
+- `Jessica Lanuzo` - Configured `ascend-sql-server` firewall rules. Added client IP and allowed Azure service and resource access
+  - (screenshot in deployment/screenshots/23)
+
 ## [2026-05-13] - CI/CD and Deployment
 
 ### Added
