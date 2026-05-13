@@ -122,3 +122,8 @@ All notable changes to this project will be documented in this file.
 - Cost saving: B1 vs S1 = ~$43/month reduction (77% savings)
 - Full Rules-Based autoscaling requires Standard S1 tier
 
+## [2026-05-14] - App Insights Setup Verification
+### Fixed
+- `Jessica Lanuzo` - Added missing Azure environment variable `USE_AZURE` to App Service Configuration; app was silently running in local dev mode (SQLite, no App Insights) on 
+  production due to missing variables
+  - (screenshot in deployment/screenshots/41 to 45)
