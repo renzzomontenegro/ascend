@@ -122,7 +122,7 @@ All notable changes to this project will be documented in this file.
 - Cost saving: B1 vs S1 = ~$43/month reduction (77% savings)
 - Full Rules-Based autoscaling requires Standard S1 tier
 
-## [2026-05-14] - App Insights Setup Verification
+## [2026-05-14] - App Insights Setup & Verification
 ### Added
 - `Jessica Lanuzo` - Configured URL ping availability test in Application Insights 
   (ascend-insights) targeting https://ascend-app-dfhbhdfcddewgdda.eastasia-01.azurewebsites.net to monitor uptime from multiple Azure regions; test confirms application is publicly 
@@ -132,3 +132,10 @@ All notable changes to this project will be documented in this file.
 - `Jessica Lanuzo` - Added missing Azure environment variable `USE_AZURE` to App Service Configuration; app was silently running in local dev mode (SQLite, no App Insights) on 
   production due to missing variables
   - (screenshots in deployment/screenshots/41 to 45)
+
+## [2026-05-15] - App Insights Setup & Verification (Continuation)
+### Added
+- `Jessica Lanuzo` - Created alert rule `ascend-failed-requests-alert` that triggers warning when failed requests exceed 5 in 5 minutes
+  - (screenshots in deployment/screenshots/51 to 56)
+- `Jessica Lanuzo` - Created action group `ascend-alert-group` with email notification on alert trigger
+  - (screenshot in deployment/screenshots/53)
