@@ -139,3 +139,5 @@ All notable changes to this project will be documented in this file.
   - (screenshots in deployment/screenshots/51 to 56)
 - `Jessica Lanuzo` - Created action group `ascend-alert-group` with email notification on alert trigger
   - (screenshot in deployment/screenshots/53)
+- `Jessica Lanuzo` - Verified Application Insights `ascend-insight` connected to `ascend-app`
+  - (screenshot in deployment/screenshots/57)
