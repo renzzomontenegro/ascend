@@ -167,3 +167,8 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - `Renzzo Montenegro` - Modified `app/config.py` to disable browser caching for static files (`SEND_FILE_MAX_AGE_DEFAULT = 0`). This ensures that changes to HTML templates and CSS/JS files are immediately reflected in the browser without needing to manually clear cache or restart the server
+
+## [2026-05-16] - Cost Estimate
+
+### Added
+- `Jessica Lanuzo` - Added Cost Estimate Report
