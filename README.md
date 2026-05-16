@@ -326,3 +326,17 @@ See `CHANGELOG.md` for the full project history.
 | **Renzzo**  | Backend (Flask routes, DB, config), Azure deployment, Autoscaling                                     |
 | **Jessica** | Frontend (HTML templates), Azure SQL + Blob Storage setup, Application Insights, Cost Estimate Report |
 
+
+## System Screenshots
+- Landing page
+![Ascend Landing Page](/deployment/screenshots/system-landing.png)
+- Sign in, Register pages
+![Ascend Login Page](/deployment/screenshots/system-sign-in.png)
+![Ascend Register Page](/deployment/screenshots/system-register.png)
+
+- Admin Views
+![Ascend Admin View 1](/deployment/screenshots/system-admin-01.png)
+![Ascend Admin View 2](/deployment/screenshots/system-admin-02.png)
+- Student Views
+![Ascend Student View 1](/deployment/screenshots/system-student-01.png)
+![Ascend Student View 2](/deployment/screenshots/system-student-02.png)
