@@ -141,3 +141,17 @@ All notable changes to this project will be documented in this file.
   - (screenshot in deployment/screenshots/53)
 - `Jessica Lanuzo` - Verified Application Insights `ascend-insight` connected to `ascend-app`
   - (screenshot in deployment/screenshots/57)
+
+## [2026-05-16] - Deployment Fix
+
+### Added
+- `Renzzo Montenegro` - Added `deploy.yml` to `.github/workflows/`
+
+### Changed
+- `Renzzo Montenegro` - Updated github secrets `AZURE_APP_NAME`, `AZURE_CREDENTIALS`
+
+### Fixed
+- `Renzzo Montenegro` - Fixed deployment issues by making a new deployment workflow file `deploy.yml`
+
+### Removed
+- `Renzzo Montenegro` - Removed `main_ascend-app.yml`
