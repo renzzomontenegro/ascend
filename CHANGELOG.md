@@ -146,12 +146,15 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - `Renzzo Montenegro` - Added `deploy.yml` to `.github/workflows/`
+- `Renzzo Montenegro` - Added `main_ascend-app.yml` again
 
 ### Changed
 - `Renzzo Montenegro` - Updated github secrets `AZURE_APP_NAME`, `AZURE_CREDENTIALS`
 
 ### Fixed
 - `Renzzo Montenegro` - Fixed deployment issues by making a new deployment workflow file `deploy.yml`
+- `Renzzo Montenegro` - Reverted deployment workflow file `main_ascend-app.yml` to an older version
 
 ### Removed
 - `Renzzo Montenegro` - Removed `main_ascend-app.yml`
+- `Renzzo Montenegro` - Removed `deploy.yml`
