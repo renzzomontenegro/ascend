@@ -7,6 +7,8 @@ class Config:
     # Flask
     SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", "dev-secret-key")
     FLASK_ENV = os.environ.get("FLASK_ENV", "development")
+    TEMPLATES_AUTO_RELOAD = True
+    SEND_FILE_MAX_AGE_DEFAULT = 0
 
     # ── LOCAL DEV vs AZURE TOGGLE ──
     # Set USE_AZURE=true in .env to use Azure SQL + Blob Storage
