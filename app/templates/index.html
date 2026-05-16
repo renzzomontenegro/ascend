@@ -8,20 +8,6 @@
   <div class="hero-inner">
     <h1>ASCEND</h1>
     <p class="hero-sub">Azure-based Student Cloud Enrollment Dashboard</p>
-    <div class="hero-actions">
-      {% if not session.get('user_id') %}
-        <a href="{{ url_for('login') }}" class="btn-navy btn-lg">Login</a>
-        <a href="{{ url_for('register') }}" class="btn-outline btn-lg">Register</a>
-      {% else %}
-        {% if session.get('role') == 'student' %}
-          <a href="{{ url_for('apply') }}" class="btn-navy btn-lg">Submit Application</a>
-          <a href="{{ url_for('status') }}" class="btn-outline btn-lg">View Status</a>
-        {% endif %}
-        {% if session.get('role') == 'admin' %}
-          <a href="{{ url_for('admin_dashboard') }}" class="btn-navy btn-lg">Admin Dashboard</a>
-        {% endif %}
-      {% endif %}
-    </div>
   </div>
 </div>
 

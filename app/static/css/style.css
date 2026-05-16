@@ -635,15 +635,16 @@ tr:hover td { background: var(--sky-pale); }
 }
 .hero-inner h1 {
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 48px;
+  font-size: 60px;
   color: white;
+  line-height: 1.1;
   margin-bottom: 12px;
 }
 .hero-sub {
-  font-size: 18px;
+  font-size: 24px;
   color: rgba(255,255,255,0.65);
   font-weight: 300;
-  margin-bottom: 28px;
+  margin-bottom: 0;
 }
 .hero-actions {
   display: flex;
@@ -1031,7 +1032,8 @@ tr:hover td { background: var(--sky-pale); }
   .page-container { padding: 24px 16px; }
   .flash-wrap { padding: 0 16px; }
   .page-hero h1 { font-size: 26px; }
-  .hero-inner h1 { font-size: 32px; }
+  .hero-inner h1 { font-size: 40px; }
+  .hero-sub { font-size: 20px; }
   .auth-container { max-width: 100%; }
   .review-panel { grid-template-columns: 1fr; }
   .review-form { position: static; }
