@@ -150,6 +150,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - `Renzzo Montenegro` - Updated github secrets `AZURE_APP_NAME`, `AZURE_CREDENTIALS`
+- `Renzzo Montenegro` - Changed '?' in app.py to '%s' for pymssql compatibility
 
 ### Fixed
 - `Renzzo Montenegro` - Fixed deployment issues by making a new deployment workflow file `deploy.yml`
