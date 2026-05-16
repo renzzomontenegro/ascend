@@ -74,7 +74,7 @@ def register():
         cursor = conn.cursor()
         try:
             cursor.execute(
-                "INSERT INTO accounts (username, password_hash, role) VALUES (?, ?, 'student')",
+                "INSERT INTO accounts (username, password_hash, role) VALUES (%s, %s, 'student')",
                 (username, password)
             )
             conn.commit()
@@ -95,7 +95,7 @@ def login():
         conn = get_connection()
         cursor = conn.cursor()
         cursor.execute(
-            "SELECT id, password_hash, role FROM accounts WHERE username = ?",
+            "SELECT id, password_hash, role FROM accounts WHERE username = %s",
             (username,)
         )
         user = cursor.fetchone()
@@ -140,7 +140,7 @@ def apply():
             INSERT INTO enrollments
               (student_name, student_id, course, year_level,
                email, document_url, account_id)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
         """, (student_name, student_id, course,
               year_level, email, document_url, session["user_id"]))
         conn.commit()
@@ -159,7 +159,7 @@ def status():
         SELECT student_name, course, year_level,
                status, submitted_at, admin_notes
         FROM enrollments
-        WHERE account_id = ?
+        WHERE account_id = %s
         ORDER BY submitted_at DESC
     """, (session["user_id"],))
     applications = cursor.fetchall()
@@ -198,14 +198,14 @@ def admin_review(app_id):
         if Config.USE_AZURE:
             sql = """
                 UPDATE enrollments
-                SET status = ?, admin_notes = ?, reviewed_at = GETDATE()
-                WHERE id = ?
+                SET status = %s, admin_notes = %s, reviewed_at = GETDATE()
+                WHERE id = %s
             """
         else:
             sql = """
                 UPDATE enrollments
-                SET status = ?, admin_notes = ?, reviewed_at = CURRENT_TIMESTAMP
-                WHERE id = ?
+                SET status = %s, admin_notes = %s, reviewed_at = CURRENT_TIMESTAMP
+                WHERE id = %s
             """
         
         cursor.execute(sql, (status, admin_notes, app_id))
@@ -215,7 +215,7 @@ def admin_review(app_id):
         conn.close()
         return redirect(url_for("admin_dashboard"))
 
-    cursor.execute("SELECT * FROM enrollments WHERE id = ?", (app_id,))
+    cursor.execute("SELECT * FROM enrollments WHERE id = %s", (app_id,))
     application = cursor.fetchone()
     cursor.close()
     conn.close()
