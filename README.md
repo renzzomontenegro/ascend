@@ -4,6 +4,10 @@
 **Term:** AY 2025–2026, 2nd Semester
 **Team:** John Renzzo Montenegro & Jessica Mae Lanuzo
 
+Live Link: https://ascend-app-dfhbhdfcddewgdda.eastasia-01.azurewebsites.net/
+
+Live Demo & Video Presentation: https://youtu.be/Ft73xUu7MQs
+
 ---
 
 ## Project Overview
@@ -123,6 +127,8 @@ cp .env.example .env
 Open `.env` and fill in the following values:
 
 ```env
+USE_AZURE=true
+
 # Azure SQL Database
 SQL_SERVER=your-server-name.database.windows.net
 SQL_DATABASE=enrollmentdb
@@ -319,3 +325,4 @@ See `CHANGELOG.md` for the full project history.
 |-------------|-------------------------------------------------------------------------------------------------------|
 | **Renzzo**  | Backend (Flask routes, DB, config), Azure deployment, Autoscaling                                     |
 | **Jessica** | Frontend (HTML templates), Azure SQL + Blob Storage setup, Application Insights, Cost Estimate Report |
+
